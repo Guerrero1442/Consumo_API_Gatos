@@ -1,8 +1,37 @@
-// const URL = 'https://api.thecatapi.com/v1/images/search'
+window.addEventListener("load", function () {
+    loadRandomMichis();
+});
+
+("use strict");
+
+const lista_carousel = document.getElementById("carousel__lista");
+const punto = document.querySelectorAll(".punto");
+
+// Cuando click en un punto
+// Saber la posicion de ese punto
+// Quitar la clase activo de Todos los puntos
+// Añadir la clase activo al punto que hemos hecho CLICK
+
+punto.forEach((cadaPunto, i) => {
+    punto[i].addEventListener("click", () => {
+        let posicion = i;
+        let operacion = posicion * -50;
+
+        lista_carousel.style.transform = `translateX(${operacion}%)`;
+
+        punto.forEach((cadaPunto, i) => {
+            punto[i].classList.remove("activo");
+        });
+        punto[i].classList.add("activo");
+        // posicion es 0 transformX es 0
+        // posicion es 1 transformX es -50
+        // operacion = posicion *-50
+    });
+});
 
 const URL_Random = [
     "https://api.thecatapi.com/v1/images/search",
-    "?limit=3",
+    "?limit=2",
     "&api_key=bef0851d-5947-4fdd-8ce0-cfebeb871e4a",
 ].join("");
 
@@ -20,33 +49,28 @@ const URL_Favorites_Delete = (id) =>
 
 const spanError = document.getElementById("error");
 
-// fetch(URL)
-// 	.then(res => res.json())
-// 	.then(data => {
-// 		const img = document.querySelector('img')
-// 		img.src = data[0].url
-// 	})
-
-// lo mismo de arriba pero con async functions
 async function loadRandomMichis() {
     try {
         const response = await fetch(URL_Random);
-        const status = response.status;
-        if (status != 200) throw new Error(`Error de petición HTTP en Random: ${status}`);
         const data = await response.json();
-        console.log("Random");
+        const status = response.status;
+        if (status != 200) {
+            throw new Error(`Error de petición HTTP en Random: ${status}`);
+        } else console.log("Random");
         console.log(data);
-
-        const img1 = document.getElementById("img1");
-        const img2 = document.getElementById("img2");
-        const btn1 = document.getElementById("btn1");
-        const btn2 = document.getElementById("btn2");
-
-        img1.src = data[0].url;
-        img2.src = data[1].url;
-
-        btn1.onclick = () => saveFavoriteMichi(data[0].id);
-        btn2.onclick = () => saveFavoriteMichi(data[1].id);
+        data.forEach((gato) => {
+            const lista = document.getElementById("carousel__lista");
+            const elemento = document.createElement("div");
+            const img = document.createElement("img");
+            const btn = document.createElement("button");
+            const btnText = document.createTextNode("Guardar michi en favoritos");
+            img.src = gato.url;
+            btn.appendChild(btnText);
+            btn.onclick = () => saveFavoriteMichi(gato.image.url);
+            lista.appendChild(elemento);
+            elemento.appendChild(img);
+            elemento.appendChild(btn);
+        });
     } catch (error) {
         console.log(error.message);
         spanError.innerText = `Error: ${error.message}`;
@@ -61,13 +85,8 @@ async function loadFavoriteMichi() {
         if (status != 200) {
             throw new Error(`Error de petición HTTP en cargar favoritos: ${status}`);
         } else {
-            const section = document.getElementById("favoriteMichis");
-            section.innerHTML = "";
-            const h2 = document.createElement("h2");
-            const h2Text = document.createTextNode("Michis favoritos");
-            h2.appendChild(h2Text);
-            section.appendChild(h2);
             data.forEach((gato) => {
+                const section = document.getElementById("favoritesMichis");
                 const article = document.createElement("article");
                 const img = document.createElement("img");
                 const btn = document.createElement("button");
@@ -134,6 +153,5 @@ async function deleteFavoriteMichi(id) {
     }
 }
 
-loadRandomMichis();
 loadFavoriteMichi();
 document.getElementById("clickMe").onclick = loadRandomMichis;

@@ -1,0 +1,57 @@
+@import './reset/reset.scss','./reset/keyframes.scss','./reset/mixins.scss','./reset/variables.scss';
+.header {
+	width: 100vw;
+	height: 40px;
+	text-align: center;
+	background-color: aquamarine;
+}
+.header__title {
+	font-size: 3rem;
+}
+.carousel {
+	width: 90%;
+	max-width: 120em;
+	padding: 2em;
+	@include neo(1, 1em, 1em)
+}
+#carousel__lista {
+	width: 200%;
+	padding: 2em;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	align-items: center;
+	@include neo(1, 1em, 1em);
+	transition: all .5s ease;
+	transform: translateX(0);
+}
+#carousel__list img {
+	width: calc(100% / 2 - 2em) ;
+	min-height: 10vh;
+	padding: 2em;
+	@include neo(1, 1em, 1em);
+}
+#carousel__list button {
+	width: 100%;
+	background-color: black;
+	padding: 1em;
+	@include neo(1, 1em, 1em);
+
+}
+.carousel .puntos {
+	width: 100%;
+	padding: .4em;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+}
+.carousel .punto {
+	width: 2em;
+	height: 2em;
+	margin: 1em 1em 0;
+	@include neo(1, 1em, .6em)
+}
+.carousel .punto.activo {
+	background-color: orange;
+}
