@@ -14,7 +14,7 @@
 	}	
 }
 @mixin neo( $estado ,$br , $dis1 ){
-	color			: var(--negro);
+	color			: var(--morado);
 	transition		: all .4s ease;
 	border-radius 	: $br ;
 	
@@ -42,4 +42,14 @@
 		grid-template-rows	: repeat( $repetirR , $grosorR );
 	}
 	gap: $gap ;
+}
+@function calculateRem($size){
+	$remSize: $size / 16px;
+	@return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+	font-size: $size;
+	font-size: calculateRem($size);
+	line-height: calculateRem($size)*1.5;	
 }

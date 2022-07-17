@@ -6,8 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1.7.7/glider.min.css">
-	<link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+		rel="stylesheet">
 	<link rel="stylesheet" href="./css/app.css">
 	<title>Michis APP</title>
 </head>
@@ -18,14 +18,22 @@
 	<main class="main">
 		<!-- <span id="error"></span> -->
 		<section class="carousel">
-			<div id="carousel__lista">
+			<h2 class="carousel__titulo">Genera tus gatos aleatorios</h2>
+			<div class="carousel__container">
+				<div id="carousel__lista">
+					<!-- <div>
+						<img src="" alt="">
+						<button></button>
+					</div> -->
+				</div>
+				<ul class="puntos">
+					<div class="punto activo"><i class="fa-solid fa-chevron-left"></i></div>
+					<div class="punto"><i class="fa-solid fa-chevron-right"></i></div>
+				</ul>
 			</div>
-			<ul class="puntos">
-				<li class="punto activo"></li>
-				<li class="punto"></li>
-			</ul>
+
 		</section>
-		<input type="button" id="clickMe" value="recargar gato" onclick="loadRandomMichis()">
+		<!-- <input type="button" id="clickMe" value="recargar gato" disabled="true" onclick="loadRandomMichis()"> -->
 	</main>
 	<script src="https://kit.fontawesome.com/4ef6e52899.js" crossorigin="anonymous"></script>
 	<script src="./js/main.js"></script>

@@ -11,13 +11,25 @@ const punto = document.querySelectorAll(".punto");
 // Saber la posicion de ese punto
 // Quitar la clase activo de Todos los puntos
 // Añadir la clase activo al punto que hemos hecho CLICK
-
+var contador = 1;
 punto.forEach((cadaPunto, i) => {
     punto[i].addEventListener("click", () => {
-        let posicion = i;
-        let operacion = posicion * -50;
+        if (i == 0 && contador > 0) {
+            let posicion = contador;
+            let operacion = posicion * -10;
+            lista_carousel.style.transform = `translateX(${operacion}%)`;
+            contador = contador - 1;
+            console.log(contador);
+        } else if (i == 1 && contador < 10) {
+            let posicion = contador;
+            let operacion = posicion * -10;
+            lista_carousel.style.transform = `translateX(${operacion}%)`;
+            contador = contador + 1;
+            console.log(contador);
+        }
 
-        lista_carousel.style.transform = `translateX(${operacion}%)`;
+        let posicion = i;
+        let operacion = posicion * -10;
 
         punto.forEach((cadaPunto, i) => {
             punto[i].classList.remove("activo");
@@ -31,7 +43,7 @@ punto.forEach((cadaPunto, i) => {
 
 const URL_Random = [
     "https://api.thecatapi.com/v1/images/search",
-    "?limit=2",
+    "?limit=10",
     "&api_key=bef0851d-5947-4fdd-8ce0-cfebeb871e4a",
 ].join("");
 
@@ -103,7 +115,6 @@ async function loadFavoriteMichi() {
         console.log(data);
     } catch (error) {
         console.log(error.message);
-        spanError.innerText = `Error: ${error.message}`;
     }
 }
 
@@ -154,4 +165,4 @@ async function deleteFavoriteMichi(id) {
 }
 
 loadFavoriteMichi();
-document.getElementById("clickMe").onclick = loadRandomMichis;
+// document.getElementById("clickMe").onclick = loadRandomMichis;

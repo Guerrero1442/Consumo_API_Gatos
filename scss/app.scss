@@ -1,57 +1,168 @@
 @import './reset/reset.scss','./reset/keyframes.scss','./reset/mixins.scss','./reset/variables.scss';
+// Variables Colores pastel
+$morado: #9650BD;
+$rosado: #E260C5;
+$blanco: #E8E4F4;
+$azul-claro: #C4E0EE;
+$azul: #A2D4DA;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html {
+	font-family: 'Source Code Pro', monospace;
+}
+body {
+	font-family: 'Source Code Pro', monospace;
+	
+}
 .header {
 	width: 100vw;
-	height: 40px;
+	height: 50px;
 	text-align: center;
-	background-color: aquamarine;
+	background-color: $azul-claro;
 }
 .header__title {
-	font-size: 3rem;
+	@include font-size(35px);
+	font-weight: 700;
 }
-.carousel {
-	width: 90%;
-	max-width: 120em;
-	padding: 2em;
-	@include neo(1, 1em, 1em)
-}
-#carousel__lista {
-	width: 200%;
-	padding: 2em;
-	display: flex;
-	flex-flow: row nowrap;
-	justify-content: space-between;
-	align-items: center;
-	@include neo(1, 1em, 1em);
-	transition: all .5s ease;
-	transform: translateX(0);
-}
-#carousel__list img {
-	width: calc(100% / 2 - 2em) ;
-	min-height: 10vh;
-	padding: 2em;
-	@include neo(1, 1em, 1em);
-}
-#carousel__list button {
-	width: 100%;
-	background-color: black;
-	padding: 1em;
-	@include neo(1, 1em, 1em);
+.main {
+	height: auto;
+	width: 100vw;
 
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(2, 550px);
+	justify-items: center;
+	background-color: $blanco;
+	overflow-x: hidden;
+	.carousel {
+		display: flex;
+		flex-direction: column;
+		width: 80%;
+		max-width: 120em;
+		height: 100%;
+		
+		&__titulo {
+			margin: 10px 0 40px 0;
+			font-weight:bolder;
+			@include font-size(35px);
+			text-align: left;
+			color: $rosado;
+		}
+		.carousel__container {
+			display: flex;
+			flex-direction: column;
+			width: 80%;
+			max-width: 120em;
+			height: 90%;
+			#carousel__lista {
+				width: 1000%;
+				height: 90%;
+				display: flex;
+				flex-flow: row nowrap;
+				justify-content: space-between;
+				align-items: center;
+				transition: all .5s ease;
+				transform: translateX(0);
+				div {
+					 width: calc(100% / 10 - 2em) ;
+					 height: 100%;
+					padding: 2em;
+					padding-bottom: 2em;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					border-radius: 50px;
+					background: #A2D4DA;
+					box-shadow:  20px 20px 60px #8ab4b9,
+						     -20px -20px 60px #baf4fb;				
+					img {
+						width: 100%;
+						height: 100%;
+						border-radius: 24px;
+					}
+					button {
+						width: 60%;
+						padding: 10px;
+						margin-top: 1em;
+						border: transparent solid 4px;
+						border-radius: 37px;
+						background: #9650BD;
+						box-shadow: inset 14px 14px 29px #7b429b,
+						    inset -14px -14px 29px #b15edf;
+						cursor: pointer;
+					}
+					button:hover {
+						background-color: antiquewhite;
+						border: $blanco solid 4px;
+						box-shadow: -10px -10px 30px $azul-claro, 10px 10px 30px $morado,
+						inset -3px -3px 10px $azul-claro, inset 3px 3px 10px $morado;				
+	
+					}
+				}
+			}
+			.puntos{
+				width:100%;
+				margin:1em 0 0;
+				padding:.3em;
+				display: flex;
+				flex-flow: row nowrap;
+				justify-content: center;
+				align-items: center;
+				.punto{
+					width:  2em;
+					height: 2em;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					margin: 1em 1em 0;
+					text-align: center;
+					border-radius: 37px;
+					background: #E260C5;
+					box-shadow: inset 14px 14px 29px #b94fa2,
+						inset -14px -14px 29px #ff71e8;
+					cursor: pointer;
+				}	    
+				    .punto.activo{
+					border-radius: 37px;
+					background: #E8E4F4;
+					box-shadow: inset 14px 14px 29px #bebbc8,
+						    inset -14px -14px 29px #ffffff;
+				    }
+			}
+		}
+	}
 }
-.carousel .puntos {
-	width: 100%;
-	padding: .4em;
-	display: flex;
-	flex-flow: row nowrap;
-	justify-content: center;
-	align-items: center;
-}
-.carousel .punto {
-	width: 2em;
-	height: 2em;
-	margin: 1em 1em 0;
-	@include neo(1, 1em, .6em)
-}
-.carousel .punto.activo {
-	background-color: orange;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
